@@ -1,0 +1,34 @@
+let t = 0;
+let trig = 0;
+
+function setup() {
+	createCanvas(w=1112, h=834);
+	colorMode(HSB, 255);
+	background(100);
+	frameRate(16);
+	fill(0, 255, 255);
+	ellipse(w/2, h/2, 600, 600);
+}
+
+function draw() {
+	//background(100);
+  translate(w/2, h/2);
+	rotate(-PI/2 - t/2);
+	fill(abs(t/TWO_PI*255)%255, 255, 255);
+	arc(0, 0, 600, 600, 0, t, PIE);
+	t -= .1
+	if (t < -TWO_PI && trig == 0){ 
+    mousePressed();
+		//noLoop(); //uncomment only to save an icon. Then comment out again.
+    trig = 1;
+	}
+}
+
+// save jpg
+let lapse = 0;    // mouse timer
+function mousePressed(){
+  if (millis() - lapse > 400){
+    save("img_" + month() + '-' + day() + '_' + hour() + '-' + minute() + '-' + second() + ".jpg");
+    lapse = millis();
+  } 
+}
